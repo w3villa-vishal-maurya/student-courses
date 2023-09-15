@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
 
     def index
         @student_id = params[:id]
+        # @user = Student.find(@student_id)
         @course = Course.all
     end
 
@@ -19,7 +20,14 @@ class CoursesController < ApplicationController
     end
 
     def show
-        @course = Course.find(params[:id])
+        @student_id = params[:student_id]
+        
+        if params[:student_id] == params[:id]
+            @course = Course.find(params[:course_id])
+        else
+            @course = Course.find(params[:id])
+        end
+
     end
 
     def edit
@@ -44,12 +52,25 @@ class CoursesController < ApplicationController
     end
 
     def course_buy
-        debugger
+        # if params[:student_id] == nil
+        #     flash[:notice]="Only Student can by the courses!!!"
+        #     redirect_to student_index_path
+        # end
+
         @student = Student.find(params[:student_id])
         @course = Course.find(params[:course_id]) 
-        @student.teachers.create(course_id: @course.id)
+    
+        # @student.teachers.create(course_id: @course.id)
+
+        @teacher = Teacher.new(course_id: @course.id,student_id:@student.id)
+        if @teacher.save
+            flash[:notice]="Course have been assigned"
+            redirect_to student_index_path
+        else
+            flash[:alert]="Error"
+            redirect_to course_index_path
+        end
         
-        redirect_to student_index_path
     end
 
     private

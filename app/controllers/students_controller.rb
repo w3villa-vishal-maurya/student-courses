@@ -42,6 +42,11 @@ class StudentsController < ApplicationController
         redirect_to student_index_path
     end
 
+    def student_courses
+        @student = Student.find(params[:id])
+        @all_courses = @student.courses
+    end
+
     private
 
     def student_params

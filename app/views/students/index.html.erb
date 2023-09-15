@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag('student_index') %>
 <div class="nav">
+
   <h1>Student Dashboard</h1>
   <h4><%= link_to "Add New Student", student_new_path%></h4>
 </div>
@@ -16,9 +17,14 @@
           <p class="article">Gender- <%= student.studGender %> </p>
           <p class="article">Gender- <%= student.yearOfEnroll %> </p>
         </div>
-        <a class="row link-opacity-100" href="/student/<%= student.id %>/course/index">
-          <p>Buy course</p>
-        </a>
+        <div class="access-link">
+          <a class="row link-opacity-100" href="/student/<%= student.id %>/course/index">
+            <p>Buy course</p>
+          </a>
+          <a class="row link-opacity-100" href="/student/<%= student.id %>/courses">
+            <p>Show all course</p>
+          </a>
+        </div>
       </div>
     </div>
   <%end%>
