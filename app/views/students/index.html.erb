@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag('student_index') %>
+<div class="nav">
+  <h1>Student Dashboard</h1>
+  <h4><%= link_to "Add New Student", student_new_path%></h4>
+</div>
+<div class="row">
+  <% @student.each do |student|%>
+    <div class="col-4 card">
+      <div class="text">
+        <a class="row title" href="/student/<%= student.id %>">
+          <h3><%= student.id %></h3>
+        </a>
+        <div class="row">
+          <p class="article"><%= student.studFName %> <%= student.studMName %> <%= student.studLName %></p>
+          <p class="article">Address- <%= student.studAddressCity %></p>
+          <p class="article">Gender- <%= student.studGender %> </p>
+          <p class="article">Gender- <%= student.yearOfEnroll %> </p>
+        </div>
+        <a class="row link-opacity-100" href="/student/<%= student.id %>/course/index">
+          <p>Buy course</p>
+        </a>
+      </div>
+    </div>
+  <%end%>
+</div>

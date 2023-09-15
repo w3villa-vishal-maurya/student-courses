@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag('student_show') %> 
+<h1>Hello from show...</h1>
+
+<div class="nav">
+  <h1>Student-<%=@course.id%></h1>
+  <div class="edit-section">
+    <h4 class="edit"><%= link_to "Home", course_index_path%></h4>
+    <h4 class="edit"><%= link_to "Edit", course_edit_path%></h4>
+    <h4 class="edit"><%= link_to "Delete",  course_delete_path(@course), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></h4>
+  </div>
+</div>
+<div class="row">
+    <div class="col-4">
+      <div class="text">
+        <a class="row title" href="/course/<%= @course.id %>">
+          <h3><%= @course.courseTitle %></h3>
+        </a>
+        <div class="row">
+          <p class="">Duration of Course- <%= @course.courseDuration%></p>
+          <p class="">Course Description- <%= @course.courseDescription%></p>
+          <p class="">Course Price- <%= @course.coursePrice%></p>
+        </div>
+
+        <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: @course.id), class: "btn btn-primary" %>
+      </div>
+    </div>
+
+</div>

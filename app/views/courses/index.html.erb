@@ -1,0 +1,28 @@
+<%= stylesheet_link_tag('student_index') %> 
+
+<div class="nav">
+  <h1>Course Dashboard</h1>
+  <h4><%= link_to "Add New Course", course_new_path%></h4>
+</div>
+<div class="row">
+  <% @course.each do |course|%>
+    <div class="col-4 card">
+      <%# <div class="row image"> %>
+        <%# <% if blog.image.attached? %> 
+          <%# <img src=<%=(url_for(blog.image))> %> 
+        <%# <% end %> 
+      <%# </div> %>
+      <div class="text">
+        <a class="row title" href="/course/<%= course.id %>">
+          <h3><%= course.courseTitle %></h3>
+        </a>
+        <%#= link_to "Title", course_show_path(student_id: @student_id,course_id: course.id)%>
+        <div class="row">
+          <p class="article"><%= course.courseDescription %></p>
+          <p class="article">Module- <%= course.courseDuration %></p>
+          <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>
