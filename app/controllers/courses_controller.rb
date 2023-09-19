@@ -15,7 +15,7 @@ class CoursesController < ApplicationController
         if @course.save
             redirect_to course_index_path
         else
-            render palin: "Not added!"
+            render :new
         end
     end
 

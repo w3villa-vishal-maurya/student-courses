@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get "/student/:id/course/index", to: "courses#index", as: "student_id_course_index"
   post "course_buy", to: "courses#course_buy"
   get "/student/:id/courses", to: "students#student_courses", as: "student_courses"
+  delete "/student/:id/courses", to: "students#student_delete_course", as: "student_delete_course"
 
   # Defines the root path route ("/")
   # root "articles#index"

@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+    # before_action :set_student, :Only [:edit, :show, :update, :destro]
+    
     def new
         @student = Student.new
     end
@@ -13,7 +15,7 @@ class StudentsController < ApplicationController
         if @student.save
             redirect_to student_index_path
         else
-            render palin: "Not added!"
+            render :new
         end
     end
 
@@ -45,6 +47,14 @@ class StudentsController < ApplicationController
     def student_courses
         @student = Student.find(params[:id])
         @all_courses = @student.courses
+    end
+    
+    def student_delete_course
+        @student = Student.find(params[:student_id]) 
+        @course = Course.find(params[:course_id]) 
+        @student.courses.delete(@course.id)
+
+        redirect_to student_courses_path
     end
 
     private

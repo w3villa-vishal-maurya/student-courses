@@ -6,11 +6,6 @@
 <div class="row">
   <% @all_courses.each do |course|%>
     <div class="col-3 card">
-      <%# <div class="row image"> %>
-      <%# <% if blog.image.attached? %>
-      <%# <img src=<%=(url_for(blog.image))> %>
-      <%# <% end %>
-      <%# </div> %>
       <div class="text">
         <% if  @student_id %>
           <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
@@ -23,6 +18,12 @@
           <p class="article"><%= course.courseDescription %></p>
           <p class="article">Module- <%= course.courseDuration %></p>
         </div>
+        <% if @student.id %>
+            <h4 class="edit"><%= link_to "Remove",  student_delete_course_path(student_id: @student.id, course_id: course.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></h4>
+        <%end%>
       </div>
     </div>
   <%end%>
