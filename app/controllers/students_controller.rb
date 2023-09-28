@@ -14,6 +14,7 @@ class StudentsController < ApplicationController
         if @student.save
             redirect_to student_index_path
         else
+            
             render :new
         end
     end

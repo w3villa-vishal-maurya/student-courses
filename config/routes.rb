@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :students
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get "", to: "students#index"
+  root to: "students#index"
+  # root to: "devise/sessions#new"
   get "/student/new", to: "students#new"
   get "/student/index", to: "students#index"
   post "/student/create", to: "students#create"
