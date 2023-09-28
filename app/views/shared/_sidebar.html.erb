@@ -1,0 +1,55 @@
+ <%= stylesheet_link_tag('landing_page') %>
+<div class="side-bar">
+  <div class="area"></div>
+  <nav class="main-menu">
+    <ul>
+      <li>
+        <% if student_signed_in? %>
+          <a class="" href="/student/<%= current_student.id %>">
+            <% if current_student.profile_image.attached? %>
+              <img src=<%=(url_for(current_student.profile_image))%>>
+            <% end %>
+            <span class="nav-text">
+              <%= current_student.studFName %>
+            </span>
+          </a>
+        <%end%>
+      </li>
+      <li class="has-subnav">
+        <% if student_signed_in? %>
+          <a class="link-opacity-100" href="/student/<%= current_student.id %>/course/index">
+            <i class="fa fa-book fa-2x"></i>
+            <span class="nav-text">
+              Buy course
+            </span>
+          </a>
+        <%end%>
+      </li>
+      <li class="has-subnav">
+        <% if student_signed_in? %>
+          <a class="link-opacity-100" href="/student/<%= current_student.id %>/courses">
+            <i class="fa fa-bookmark fa-2x"></i>
+            <span class="nav-text">
+              My courses
+            </span>
+          </a>
+        <%end%>
+      </li>
+    </ul>
+    <% if student_signed_in? %>
+      <ul class="logout">
+        <li>
+          <a href="#">
+            <i class="fa fa-power-off fa-2x"></i>
+            <span class="nav-text">
+              <%= link_to "Sign Out",  destroy_student_session_path, data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "Are you sure? Want to Sign Out!"
+                        } %>
+            </span>
+          </a>
+        </li>
+      </ul>
+    <% end%>
+  </nav>
+</div>
