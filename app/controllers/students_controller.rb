@@ -1,5 +1,9 @@
 class StudentsController < ApplicationController
     before_action :set_student, only: [:edit,:show, :update, :destroy, :student_courses]
+
+    def landing_page
+        @course = Course.all
+    end
     
     def new
         @student = Student.new
@@ -13,8 +17,7 @@ class StudentsController < ApplicationController
         @student = Student.new(student_params)
         if @student.save
             redirect_to student_index_path
-        else
-            
+        else 
             render :new
         end
     end
@@ -55,7 +58,7 @@ class StudentsController < ApplicationController
     private
 
     def student_params
-        params.require(:student).permit(:studFName, :studMName, :studLName, :studAddressCity, :studPhone, :studGender, :yearOfEnroll)
+        params.require(:student).permit(:studFName, :studMName, :studLName, :studAddressCity, :studPhone, :studGender, :yearOfEnroll, :profile_image)
     end
 
     def set_student

@@ -1,0 +1,12 @@
+{
+    "editor.formatOnPaste": false,
+    "workbench.settings.useSplitJSON": false,
+    "workbench.settings.openDefaultSettings": false,
+    "[erb]": {
+        "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+        "editor.formatOnSave": true
+      },
+      "files.associations": {
+        "*.html.erb": "erb"
+      }
+}

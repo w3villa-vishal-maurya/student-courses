@@ -2,7 +2,6 @@
 <div class="nav">
 
   <h1>Student Dashboard</h1>
-  <h4><%= link_to "Add New Student", student_new_path%></h4>
 </div>
 <div class="row">
   <% @student.each do |student|%>
@@ -15,7 +14,7 @@
           <p class="article"><%= student.studFName %> <%= student.studMName %> <%= student.studLName %></p>
           <p class="article">Address- <%= student.studAddressCity %></p>
           <p class="article">Gender- <%= student.studGender %> </p>
-          <p class="article">Gender- <%= student.yearOfEnroll %> </p>
+          <p class="article">Enrolled- <%= student.yearOfEnroll %> </p>
         </div>
         <div class="access-link">
           <a class="row link-opacity-100" href="/student/<%= student.id %>/course/index">

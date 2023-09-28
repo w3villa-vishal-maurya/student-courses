@@ -1,6 +1,5 @@
-<%= stylesheet_link_tag('student_show') %> 
+<%= stylesheet_link_tag('student_show') %>
 <h1>Hello from show...</h1>
-
 <div class="nav">
   <h1>Student-<%=@student.id%></h1>
   <div class="edit-section">
@@ -13,24 +12,23 @@
   </div>
 </div>
 <div class="row">
-    <div class="col-4">
-      <%# <div class="row image"> %>
-        <%# <% if blog.image.attached? %> 
-          <%# <img src=<%=(url_for(blog.image))> %> 
-        <%# <% end %> 
-      <%# </div> %>
-      <div class="text">
-        <a class="row title" href="/student/<%= @student.id %>">
-          <h3><%= @student.studFName %></h3>
-        </a>
-        <div class="row">
-          <p class="article"> <%= @student.studFName %> <%= @student.studMName %> <%= @student.studLName %></p>
-          <p class="">Address- <%= @student.studAddressCity%></p>
-          <p class="">Gender- <%= @student.studGender%></p>
-          <p class="">Phone Number- <%= @student.studPhone%></p>
-          <p class="">Admission Year- <%= @student.yearOfEnroll%></p>
-        </div>
+  <div class="col-4">
+    <%# <div class="row image"> %>
+    <%# <% if blog.image.attached? %>
+    <%# <img src=<%=(url_for(blog.image))> %>
+    <%# <% end %>
+    <%# </div> %>
+    <div class="text">
+      <a class="row title" href="/student/<%= @student.id %>">
+        <h3><%= @student.studFName %></h3>
+      </a>
+      <div class="row">
+        <p class="article"> <%= @student.studFName %> <%= @student.studMName %> <%= @student.studLName %></p>
+        <p class="">Address- <%= @student.studAddressCity%></p>
+        <p class="">Gender- <%= @student.studGender%></p>
+        <p class="">Phone Number- <%= @student.studPhone%></p>
+        <p class="">Admission Year- <%= @student.yearOfEnroll%></p>
       </div>
     </div>
-
+  </div>
 </div>

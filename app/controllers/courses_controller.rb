@@ -56,26 +56,36 @@ class CoursesController < ApplicationController
         #     flash[:notice]="Only Student can by the courses!!!"
         #     redirect_to student_index_path
         # end
+        # debugger
 
-        @student = Student.find(params[:student_id])
-        @course = Course.find(params[:course_id]) 
+        if current_student.present?
+            @student = Student.find(current_student.id)
+            @course = Course.find(params[:course_id]) 
     
-        # @student.teachers.create(course_id: @course.id)
+            # @student.teachers.create(course_id: @course.id)
 
-        @teacher = Teacher.new(course_id: @course.id,student_id:@student.id)
-        if @teacher.save
-            flash[:notice]="Course have been assigned"
-            redirect_to student_index_path
-        else
-            flash[:alert]="Error"
-            redirect_to course_index_path
-        end
+            @teacher = Teacher.new(course_id: @course.id,student_id:@student.id)
+            if @teacher.save
+                flash[:notice]="Course have been assigned"
+                redirect_to root_path
+            else
+                flash[:alert]="Error"
+                redirect_to course_index_path
+            end
+        else    
+            flash[:alert]="Login First"
+            redirect_to root_path
+        end     
+
+        #@student = Student.find(params[:student_id])
+
+        
         
     end
 
     private
 
     def course_params
-        params.require(:course).permit(:courseTitle, :courseDuration, :courseModule, :courseDescription, :coursePrice)
+        params.require(:course).permit(:courseTitle, :courseDuration, :courseModule, :courseDescription, :coursePrice, :course_image)
     end
 end

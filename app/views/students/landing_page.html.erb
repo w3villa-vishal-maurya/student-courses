@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <% if student_signed_in? %>
+          <%= link_to "Sign Out",  destroy_student_session_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure? Want to Sign Out!"
+                  }, class:"nav-link active" %>
+        <% else%>
+          <%= link_to "Sign In", new_student_session_path, class:"nav-link active"%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</nav>
+<div>
+  <div class="nav">
+    <h1>Our Popular Courses...</h1>
+    <% if current_student.present? %>
+      <div class="profile-img">
+        <a class="" href="/student/<%= current_student.id %>">
+          <% if current_student.profile_image.attached? %>
+            <img src=<%=(url_for(current_student.profile_image))%>>
+          <% end %>
+          <p><%= current_student.studFName %></p>
+        </a>
+      </div>
+    <%end%>
+  </div>
+  <div class="row">
+    <% @course.each do |course|%>
+      <div class="col-3 card">
+        <div class="text">
+          <% if  @student_id %>
+            <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
+          <%else %>
+            <a class="row title" href="/course/<%= course.id %>">
+              <h3><%= course.courseTitle %></h3>
+            </a>
+          <%end%>
+          <div class="row">
+            <p class="article"><%= course.courseDescription %></p>
+            <p class="article">Module- <%= course.courseDuration %></p>
+            <p class="article">Price- <%= course.coursePrice %></p>
+            <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>

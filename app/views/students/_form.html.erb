@@ -48,6 +48,10 @@
     <%= form.datetime_field :yearOfEnroll, class: "form-control", placeholder: "Year"%>
   </div>
   <div class="mb-3">
+    <%= form.label "Upload Image"%>
+    <%= form.file_field :profile_image, class: "form-control"%>
+  </div>
+  <div class="mb-3">
     <%= form.submit "ADD", class: "btn btn-primary"%>
   </div>
 <%end%>

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :students
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  root to: "students#index"
+  root to: "students#landing_page"
   # root to: "devise/sessions#new"
   get "/student/new", to: "students#new"
   get "/student/index", to: "students#index"
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   put "/student/:id/update", to: "students#update", as: "student_update"
   delete "/student/:id", to: "students#destroy", as: "student_delete"
 
- # Routes for Course Model
+  # Routes for Course Model
   get "/course/new", to: "courses#new"
   get "/course/index", to: "courses#index"
   post "/course/create", to: "courses#create"

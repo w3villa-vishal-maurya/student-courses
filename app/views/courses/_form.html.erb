@@ -1,5 +1,5 @@
 <%= form_with model: course, url: url, multipart: true, method: method  do |form| %>
-   <div class="mb-3">
+  <div class="mb-3">
     <%= form.label "Course Name"%>
     <%= form.text_field :courseTitle, class: "form-control", placeholder: "Course Name"%>
   </div>
@@ -18,6 +18,10 @@
   <div class="mb-3">
     <%= form.label "Course Price"%>
     <%= form.number_field :coursePrice, class: "form-control", placeholder: "Total Price"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Upload Image"%>
+    <%= form.file_field :course_image, class: "form-control"%>
   </div>
   <div class="mb-3">
     <%= form.submit "ADD", class: "btn btn-primary"%>

@@ -1,3 +1,13 @@
-<h1>Student</h1>
-
+<div class="nav">
+  <h1>Hello, Student</h1>
+  <ul>
+    <% if student_signed_in? %>
+      <li><%= button_to "Sign Out", destroy_student_session_path, method: :delete, class: "btn btn-primary" %></li>
+    <% else%>
+      <li>
+        <h2><%= link_to "Sign In", new_student_session_path%></h2>
+      </li>
+    <%end%>
+  </ul>
+</div>
 <%= render partial: "form", locals: {student: @student, url: student_create_path, method: nil}%>

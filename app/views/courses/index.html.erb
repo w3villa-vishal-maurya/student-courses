@@ -2,20 +2,27 @@
 <div class="nav">
   <h1>Course Dashboard</h1>
   <%if !@student_id%>
-  <h4><%= link_to "Add New Course", course_new_path%></h4>
+    <h4><%= link_to "Add New Course", course_new_path%></h4>
   <%end%>
 </div>
 <div class="row">
   <% @course.each do |course|%>
     <div class="col-3 card">
       <div class="text">
-        <% if  @student_id %>
-          <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
-        <%else %>
-          <a class="row title" href="/course/<%= course.id %>">
-            <h3><%= course.courseTitle %></h3>
-          </a>
-        <%end%>
+        <div class="course-header">
+          <% if  @student_id %>
+            <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
+          <%else %>
+            <a class="row title" href="/course/<%= course.id %>">
+              <h3><%= course.courseTitle %></h3>
+            </a>
+          <%end%>
+          <div class="profile-img">
+            <% if course.course_image.attached? %>
+              <img src=<%=(url_for(course.course_image))%>>
+            <% end %>
+          </div>
+        </div>
         <div class="row">
           <p class="article"><%= course.courseDescription %></p>
           <p class="article">Module- <%= course.courseDuration %></p>
