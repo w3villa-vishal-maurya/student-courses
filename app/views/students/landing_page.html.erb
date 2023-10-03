@@ -1,33 +1,148 @@
-<%= render partial: "shared/sidebar"%>
-
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <% if student_signed_in? %>
-          <%= link_to "Sign Out",  destroy_student_session_path, data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure? Want to Sign Out!"
-                  }, class:"nav-link active" %>
-        <% else%>
-          <%= link_to "Sign In", new_student_session_path, class:"nav-link active"%>
+<div class="container">
+  <%# <img alt="udemy" src="/assets/images/udemy.jpg" /> %>
+  <%= image_tag("udemy.jpg")%>
+</div>
+<div class="brands">
+  <div class="container brand-logo">
+    <div class="brand-text">Trusted by over 14,400 companies and millions of learners around the world</div>
+    <div class="img-logo">
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/volkswagen.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/samsung.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/cisco.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/att.svg")%></div>
+      <div class="img-tag"> <%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/procter_gamble.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/hewlett_packard_enterprise.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/att.svg")%></div>
+    </div>
+  </div>
+</div>
+<%# Add Top courses %>
+<div class="container">
+  <div class="">
+    <h1>A broad selection of courses</h1>
+  </div>
+  <div>
+    Choose from over 210,000 online video courses with new additions published every month
+  </div>
+  <div class="course-list ">
+    <ul>
+      <li>
+        Python
+      </li>
+      <li>
+        Excel
+      </li>
+      <li>
+        web Development
+      </li>
+      <li>
+        javaScript
+      </li>
+      <li>
+        data Science
+      </li>
+      <li>
+        Amazon AWS
+      </li>
+      <li>
+        Drawing
+      </li>
+    </ul>
+  </div>
+  <div class="show-course">
+    <div>
+      <div class="course-explore">
+        <h1>
+          Expand your career opportunities with Python
+        </h1>
+        <span>
+          Take one of Udemy’s range of Python courses and learn how to code using this incredibly useful language. Its simple syntax and readability makes Python perfect for Flask, Django, data science, and machine learning. You’ll learn how to build everything from games to sites to apps. 
+          Choose from a range of courses that will appeal to
+        </span>
+        <div><button >Explore Python</button></div>
+      </div>
+      <div class="row ">
+        <% @course.each do |course|%>
+          <div class="col-3 card">
+            <div class="course-img"> <% if course.course_image.attached? %>
+                <img src=<%=(url_for(course.course_image))%>>
+              <% end %>
+            </div>
+            <div class="text">
+              <% if  @student_id %>
+                <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
+              <%else %>
+                <a class="row title" href="/course/<%= course.id %>">
+                  <h3><%= course.courseTitle %></h3>
+                </a>
+              <%end%>
+              <div class="row">
+                <p class="article"><%= course.courseDescription %></p>
+                <p class="article">Module- <%= course.courseDuration %></p>
+                <p class="article">Price- <%= course.coursePrice %></p>
+                <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
         <%end%>
       </div>
     </div>
   </div>
-</nav>
-<div>
-  <div class="nav">
-    <h1>Our Popular Courses...</h1>
+</div>
+<%# Add top rated feddbacks of some learners... %>
+<div class="feedback-section">
+  <div class="container">
+    <div >
+      <h2>How learners like you are achieving their goals</h2>
+    </div>
+    <div class="feedback-card">
+      <div class= "card">
+        <div class="">
+          To stay at the leading edge of IT innovation, your team needs to regularly reinvent its skillset. With Udemy Business, I can give my team the space to learn and take the initiative. It means we can produce higher quality work more quickly.
+        </div>
+        <div class="feddback-text">
+          <p>I am proud to say that after a few months of taking this course...I passed my exam and am now an AWS Certified Cloud Practitioner! This content was exactly what the CCP exam covered.</p>
+        </div>
+        <div class="">
+          User Name
+        </div>
+      </div>
+      <div class= "card">
+        <div class="">
+          <i class="fa-solid fa-quote-left"></i>
+        </div>
+        <div class="feddback-text">
+          <p>I am proud to say that after a few months of taking this course...I passed my exam and am now an AWS Certified Cloud Practitioner! This content was exactly what the CCP exam covered.</p>
+        </div>
+        <div class="">
+          User Name
+        </div>
+      </div>
+      <div class= "card">
+        <div class="">
+          <i class="fa-solid fa-quote-left"></i>
+        </div>
+        <div class="feddback-text">
+          <p>I am proud to say that after a few months of taking this course...I passed my exam and am now an AWS Certified Cloud Practitioner! This content was exactly what the CCP exam covered.</p>
+        </div>
+        <div class="">
+          User Name
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
+</div>
+<div class="container">
+  <div>
+    <h1>Learners are viewing</h1>
+  </div>
+  <div class="row ">
     <% @course.each do |course|%>
       <div class="col-3 card">
+        <div class="course-img"> <% if course.course_image.attached? %>
+            <img src=<%=(url_for(course.course_image))%>>
+          <% end %>
+        </div>
         <div class="text">
           <% if  @student_id %>
             <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
@@ -38,12 +153,168 @@
           <%end%>
           <div class="row">
             <p class="article"><%= course.courseDescription %></p>
-            <p class="article">Module- <%= course.courseDuration %></p>
-            <p class="article">Price- <%= course.coursePrice %></p>
-            <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
           </div>
         </div>
       </div>
     <%end%>
   </div>
+</div>
+<%# Add all top category-wise skills %>
+<div class="container categories">
+  <div>
+    <h1>Top Caterogies</h1>
+  </div>
+  <div class="row ">
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-personal-development-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Design</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-design-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Development</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-development-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Marketing</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-it-and-software-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>IT & Software</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-design-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Personal Development</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-development-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Business</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-it-and-software-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Photography</h5>
+      </div>
+    </div>
+    <div class="col-3 ">
+      <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-development-2x-v2.jpg")%></div>
+      <div class="text">
+        <h5>Music</h5>
+      </div>
+    </div>
+  </div>
+</div>
+<%# Adding Category and it's related courses assigned.... %>
+<div class="category-div">
+  <div class="container">
+    <h1>Featured topics by category</h1>
+    <div class=" category-list" >
+      <% Category.all.map do |category|%>
+        <div class="course-title">
+          <h4><%= category.category_title %></h4>
+          <div>
+            <% category.courses.map do |course|%>
+              <h5><%= link_to course.courseTitle %></h5>
+            <%end%>
+          </div>
+        </div>
+      <%end%>
+    </div>
+    <button class="moretopics-btn">Explore more topics</button>
+  </div>
+</div>
+<%# Add business section %>
+<div class="business container">
+  <div class="sub-business">
+    <div class="business-text">
+      <h3>Udemy Business</h3>
+      <h1>Upskill your team with Udemy Business</h1>
+      <ul>
+        <li>Unlimited access to 22,000+ top Udemy courses, anytime, anywhere</li>
+        <li>International course collection in 14 languages</li>
+        <li>Top certifications in tech and business</li>
+      </ul>
+      <div>
+        <button class="moretopics-btn" id="explore-more">Get Udemy Business</button>
+        <button class="moretopics-btn">Learn More</button>
+      </div>
+    </div>
+    <div class="business-img"><%= image_tag("https://s.udemycdn.com/home/non-student-cta/UB_Promo_1200x1200.jpg")%></div>
+  </div>
+</div>
+<%# Add customers stories %>
+<div class="category-div" id="customer-div">
+  <div class="customer-story container">
+    <div class=" customer" >
+      <div class=" customer-text" >
+        <i class="fa-solid fa-quote-left"></i>
+        <p>To stay at the leading edge of IT innovation, your team needs to regularly reinvent its skillset. With Udemy Business, I can give my team the space to learn and take the initiative. It means we can produce higher quality work more quickly.</p>
+        <%= link_to "Read full story"%>
+      </div>
+      <div class=" customer-profile" >
+        <div class="profile-img"><%= image_tag("https://s.udemycdn.com/home/ub-case-studies/Ismaeel_Ameen.png")%></div>
+        <div class="profile-text">
+          <h5><b>Ismaeel Ameen</b></h5>
+          <p>Head of Data Engineering</p>
+          <p>Development and Data Management</p>
+        </div>
+        <div>Robert Walters</div>
+      </div>
+    </div>
+  </div>
+</div>
+<%# Add an intructor %>
+<div class="customer-story container">
+  <div class=" customer" id="instruct">
+    <div class=" customer-profile" >
+      <div class="instruct-img"><%= image_tag("https://s.udemycdn.com/home/non-student-cta/instructor-2x-v3.jpg")%></div>
+    </div>
+    <div class=" customer-text" >
+      <h1 class="">Become an instructor</h1>
+      <p>Instructors from around the world teach millions of learners on Udemy. We provide the tools and skills to teach what you love.</p>
+      <button class="moretopics-btn" id="explore-more">Start teaching today</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+ <div class="sub-footer">
+   <div class="footer-element">
+    <ul>
+    <li><%= link_to "Udemy Business"%></li>
+    <li><%= link_to "Tech on udemy"%></li>
+    <li><%= link_to "Get the app"%></li>
+    <li><%= link_to "About Us"%></li>
+    <li><%= link_to "Contact Us"%></li>
+  </ul>
+   <ul>
+    <li><%= link_to "Career"%></li>
+    <li><%= link_to "Blog"%></li>
+    <li><%= link_to "Helo & Support"%></li>
+    <li><%= link_to "Affliate"%></li>
+    <li><%= link_to "Investors"%></li>
+  </ul>
+   <ul>
+    <li><%= link_to "Terms"%></li>
+    <li><%= link_to "Privacy policy"%></li>
+    <li><%= link_to "Cookie"%></li>
+    <li><%= link_to "Sitemap"%></li>
+    <li><%= link_to "Accessibility statement"%></li>
+  </ul>
+   </div>
+
+   <div> <button class="moretopics-btn" id="explore-more"><i class="fa-solid fa-globe"></i> English</button></div>
+ </div>
 </div>

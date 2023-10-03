@@ -34,7 +34,11 @@ class StudentsController < ApplicationController
         if @student.update(student_params)
             redirect_to student_show_path
         else
-            render plain: "student not found!"
+            # debugger
+            # puts(@student.errors.full_messages)
+            flash[:notice] = @student.errors.full_messages
+            redirect_to student_edit_path
+            # render plain: "student not found!"
         end
     end
 

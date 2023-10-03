@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag('nav') %>
+<nav class= "nav-bar">
+    <div><h2>Vishal</h2></div>
+    <div>
+        <a class = "a-tag" href="#">Category</a>
+    </div>
+    <div class="search-bar">
+        <form action="#" class="search-form">
+             <button type="submit" disabled class="" tabindex="-1"><i class="fa-solid fa-magnifying-glass"></i></button>
+             <input type="text" id="fname" name="fname" placeholder="Search">
+        </form>
+    </div>
+    <div class="business-link " >
+        <a class = "a-tag cb" href="#">Course Bussiness</a>
+        <a class = "a-tag" href="#">Tech on Website</a>
+    </div>
+    <div class="login-bar">
+        <%# <button class="login-btn">Login </button> %>
+        <button class="login-btn"> 
+        <% if student_signed_in? %>
+          <%= link_to "Sign Out",  destroy_student_session_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure? Want to Sign Out!"
+                  }, class:"nav-link active" %>
+        <% else%>
+          <%= link_to "Sign In", new_student_session_path, class:"nav-link active"%>
+        <%end%>
+        </button>
+        <button class="web-btn"> <i class="fa-solid fa-globe"></i></button>
+    </div>
+</nav>
