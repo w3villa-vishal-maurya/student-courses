@@ -135,6 +135,23 @@
     padding: 30px;
 }
 
+
+.swiper-btn{
+    background-color: rgb(19, 18, 18);
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after{
+    font-size: 25px !important;
+}
+
+
+.card-crousel{
+    display: flex;
+}
+
 .course-img {
     height: 130px;
 }
@@ -231,6 +248,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#story{
+    background-color: white;
 }
 
 .customer-text, .customer-profile{

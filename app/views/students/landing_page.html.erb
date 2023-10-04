@@ -61,31 +61,35 @@
         </span>
         <div><button >Explore Python</button></div>
       </div>
-      <div class="row ">
-        <% @course.each do |course|%>
-          <div class="col-3 card">
-            <div class="course-img"> <% if course.course_image.attached? %>
-                <img src=<%=(url_for(course.course_image))%>>
-              <% end %>
-            </div>
-            <div class="text">
-              <% if  @student_id %>
-                <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
-              <%else %>
-                <a class="row title" href="/course/<%= course.id %>">
-                  <h3><%= course.courseTitle %></h3>
-                </a>
-              <%end%>
-              <div class="row">
-                <p class="article"><%= course.courseDescription %></p>
-                <p class="article">Module- <%= course.courseDuration %></p>
-                <p class="article">Price- <%= course.coursePrice %></p>
-                <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+      <section class="swiper mySwiper">
+        <div class=" swiper-wrapper card-crousel">
+          <% @course.each do |course|%>
+            <div class="card swiper-slide">
+              <div class="course-img"> <% if course.course_image.attached? %>
+                  <img src=<%=(url_for(course.course_image))%>>
+                <% end %>
+              </div>
+              <div class="text">
+                <% if  @student_id %>
+                  <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
+                <%else %>
+                  <a class="row title" href="/course/<%= course.id %>">
+                    <h3><%= course.courseTitle %></h3>
+                  </a>
+                <%end%>
+                <div class="row">
+                  <p class="article"><%= course.courseDescription %></p>
+                  <p class="article">Module- <%= course.courseDuration %></p>
+                  <p class="article">Price- <%= course.coursePrice %></p>
+                  <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+                </div>
               </div>
             </div>
-          </div>
-        <%end%>
-      </div>
+          <%end%>
+        </div>
+        <div class="swiper-button-next swiper-btn"></div>
+        <div class="swiper-button-prev swiper-btn"></div>
+      </section>
     </div>
   </div>
 </div>
@@ -97,6 +101,9 @@
     </div>
     <div class="feedback-card">
       <div class= "card">
+        <div class="">
+          <i class="fa-solid fa-quote-left"></i>
+        </div>
         <div class="">
           To stay at the leading edge of IT innovation, your team needs to regularly reinvent its skillset. With Udemy Business, I can give my team the space to learn and take the initiative. It means we can produce higher quality work more quickly.
         </div>
@@ -136,28 +143,32 @@
   <div>
     <h1>Learners are viewing</h1>
   </div>
-  <div class="row ">
-    <% @course.each do |course|%>
-      <div class="col-3 card">
-        <div class="course-img"> <% if course.course_image.attached? %>
-            <img src=<%=(url_for(course.course_image))%>>
-          <% end %>
-        </div>
-        <div class="text">
-          <% if  @student_id %>
-            <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
-          <%else %>
-            <a class="row title" href="/course/<%= course.id %>">
-              <h3><%= course.courseTitle %></h3>
-            </a>
-          <%end%>
-          <div class="row">
-            <p class="article"><%= course.courseDescription %></p>
+  <section class="swiper mySwiper" id='swiper'>
+    <div class=" swiper-wrapper card-crousel">
+      <% @course.each do |course|%>
+        <div class="card swiper-slide">
+          <div class="course-img"> <% if course.course_image.attached? %>
+              <img src=<%=(url_for(course.course_image))%>>
+            <% end %>
+          </div>
+          <div class="text">
+            <% if  @student_id %>
+              <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
+            <%else %>
+              <a class="row title" href="/course/<%= course.id %>">
+                <h3><%= course.courseTitle %></h3>
+              </a>
+            <%end%>
+            <div class="row">
+              <p class="article"><%= course.courseDescription %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <%end%>
-  </div>
+      <%end%>
+    </div>
+    <div class="swiper-button-next swiper-btn"></div>
+    <div class="swiper-button-prev swiper-btn"></div>
+  </section>
 </div>
 <%# Add all top category-wise skills %>
 <div class="container categories">
@@ -256,7 +267,7 @@
 <%# Add customers stories %>
 <div class="category-div" id="customer-div">
   <div class="customer-story container">
-    <div class=" customer" >
+    <div class=" customer" id="story" >
       <div class=" customer-text" >
         <i class="fa-solid fa-quote-left"></i>
         <p>To stay at the leading edge of IT innovation, your team needs to regularly reinvent its skillset. With Udemy Business, I can give my team the space to learn and take the initiative. It means we can produce higher quality work more quickly.</p>
@@ -287,34 +298,31 @@
     </div>
   </div>
 </div>
-
-
 <div class="footer">
- <div class="sub-footer">
-   <div class="footer-element">
-    <ul>
-    <li><%= link_to "Udemy Business"%></li>
-    <li><%= link_to "Tech on udemy"%></li>
-    <li><%= link_to "Get the app"%></li>
-    <li><%= link_to "About Us"%></li>
-    <li><%= link_to "Contact Us"%></li>
-  </ul>
-   <ul>
-    <li><%= link_to "Career"%></li>
-    <li><%= link_to "Blog"%></li>
-    <li><%= link_to "Helo & Support"%></li>
-    <li><%= link_to "Affliate"%></li>
-    <li><%= link_to "Investors"%></li>
-  </ul>
-   <ul>
-    <li><%= link_to "Terms"%></li>
-    <li><%= link_to "Privacy policy"%></li>
-    <li><%= link_to "Cookie"%></li>
-    <li><%= link_to "Sitemap"%></li>
-    <li><%= link_to "Accessibility statement"%></li>
-  </ul>
-   </div>
-
-   <div> <button class="moretopics-btn" id="explore-more"><i class="fa-solid fa-globe"></i> English</button></div>
- </div>
+  <div class="sub-footer">
+    <div class="footer-element">
+      <ul>
+        <li><%= link_to "Udemy Business"%></li>
+        <li><%= link_to "Tech on udemy"%></li>
+        <li><%= link_to "Get the app"%></li>
+        <li><%= link_to "About Us"%></li>
+        <li><%= link_to "Contact Us"%></li>
+      </ul>
+      <ul>
+        <li><%= link_to "Career"%></li>
+        <li><%= link_to "Blog"%></li>
+        <li><%= link_to "Helo & Support"%></li>
+        <li><%= link_to "Affliate"%></li>
+        <li><%= link_to "Investors"%></li>
+      </ul>
+      <ul>
+        <li><%= link_to "Terms"%></li>
+        <li><%= link_to "Privacy policy"%></li>
+        <li><%= link_to "Cookie"%></li>
+        <li><%= link_to "Sitemap"%></li>
+        <li><%= link_to "Accessibility statement"%></li>
+      </ul>
+    </div>
+    <div> <button class="moretopics-btn" id="explore-more"><i class="fa-solid fa-globe"></i> English</button></div>
+  </div>
 </div>
