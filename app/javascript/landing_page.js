@@ -14,7 +14,7 @@ function show_filtered_courses(id, clicked_course) {
     console.log(id);
     let show_div = document.getElementById(id);
     console.log(show_div)
-    show_div.innerHTML = `
+    let my_div = `
     <% filter_course("python").each do |course|%> 
     <div class="card swiper-slide">
       <div class="course-img"> <% if course.course_image.attached? %>
@@ -22,23 +22,23 @@ function show_filtered_courses(id, clicked_course) {
         <% end %>
       </div>
       <div class="text">
-        <% if  @student_id %>
+      <% if  @student_id %>
           <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
-        <%else %>
+          <%else %>
           <a class="row title" href="/course/<%= course.id %>">
             <h3><%= course.courseTitle %></h3>
           </a>
-        <%end%>
-        <div class="row">
+          <%end%>
+          <div class="row">
           <p class="article"><%= course.courseDescription %></p>
           <p class="article">Module- <%= course.courseDuration %></p>
           <p class="article">Price- <%= course.coursePrice %></p>
           <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
-        </div>
-      </div>
+          </div>
+          </div>
     </div>
   <%end%>
-    `
+  `
 }
 
 

@@ -108,21 +108,43 @@
 }
 
 .course-list ul {
+    width: 50%;
     padding-top: 30px;
     display: flex;
-    padding-left: 0px;
-    gap: 30px;
-    justify-content: start;
+    padding-left: 10px;
+    justify-content: space-between;
 }
 
 .course-list li {
     list-style: none;
     cursor: pointer;
+    display: flex;
+    font-size: 18px;
+}
+
+.course-list a{
+    color: rgb(116, 116, 116) !important;
+}
+
+.course-list a:hover{
+    color: black !important;
 }
 
 .course-explore {
     display: flex;
     flex-direction: column;
+    padding-bottom: 30px;
+}
+
+.course-explore span{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 75%;
+}
+
+.course-explore button{
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .course-explore button {
@@ -131,12 +153,13 @@
 }
 
 .show-course {
-    border: 1px solid gray;
-    padding: 30px;
+    border: 1px solid rgb(190, 190, 190);
+    padding: 10px;
 }
 
 
 .swiper-btn{
+    z-index: 3;
     background-color: rgb(19, 18, 18);
     border-radius: 50px;
     width: 40px;
@@ -147,6 +170,14 @@
     font-size: 25px !important;
 }
 
+#no-border{
+    border: none;
+}
+
+#border{
+    border: 1px solid rgb(175, 174, 174);
+}
+
 
 .card-crousel{
     display: flex;
@@ -155,6 +186,13 @@
 .course-img {
     height: 130px;
 }
+
+
+.p-margin {
+    margin-bottom: 5px !important;
+}
+
+
 
 .feedback-card {
     display: flex;
@@ -168,8 +206,21 @@
     padding-bottom: 30px;
 }
 
+.category-card{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .category-img {
-    height: 200px;
+    overflow: hidden;
+}
+
+.category-img img{
+    transition: transform .2s;
+}
+
+.category-img img:hover{
+    transform:scale(1.2);
 }
 
 .category-div {
@@ -310,6 +361,21 @@
     text-decoration: none;
     color: white;
 }
+
+.h1-line{
+    display: -webkit-box;
+    max-width: 300px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-gap{
+    margin: 10px;
+    border: 1px solid gray;
+}
+
+
 
 
 

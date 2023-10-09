@@ -1,8 +1,15 @@
 class StudentsController < ApplicationController
     before_action :set_student, only: [:edit,:show, :update, :destroy, :student_courses]
 
+    helper_method :filter_course
+
     def landing_page
         @course = Course.all
+        if params[:choose_course]
+            @courses = filter_course(params[:choose_course])
+        else
+            @courses = filter_course("python")
+        end
     end
     
     def new
@@ -11,6 +18,10 @@ class StudentsController < ApplicationController
 
     def index
         @student = Student.all
+    end
+
+    def selected
+        
     end
 
     def create
@@ -57,6 +68,18 @@ class StudentsController < ApplicationController
         @student.courses.delete(@course.id)
 
         redirect_to student_courses_path
+    end
+
+    def filter_course(req_course = "Python")
+        @course = Course.all
+        @newCourse = Array.new();
+        @course.each do |course|
+            if course.courseTitle.downcase.include? req_course.downcase
+                @newCourse.push(course);
+            end
+        end
+        
+        return @newCourse;
     end
 
     private
