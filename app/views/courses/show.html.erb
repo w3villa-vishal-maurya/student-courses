@@ -1,30 +1,183 @@
 <%= stylesheet_link_tag('student_show') %>
-<h1>Hello from show...</h1>
-<div class="nav">
-  <h1>Course-<%=@course.id%></h1>
-  <% if !@student_id%>
-    <div class="edit-section">
-      <h4 class="edit"><%= link_to "Home", course_index_path%></h4>
-      <h4 class="edit"><%= link_to "Edit", course_edit_path%></h4>
-      <h4 class="edit"><%= link_to "Delete",  course_delete_path(@course), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></h4>
+<%= render partial: "shared/course_card"%>
+<div class="top-container">
+  <div class="container p-2">
+    <div class="category-title">
+      <span>Development 	&gt; Web Development 	&gt; Web Development </span> <span></span>
     </div>
-  <%end%>
-</div>
-<div class="row">
-  <div class="col-4">
-    <div class="text">
-      <h3><%= @course.courseTitle %></h3>
-      <div class="row">
-        <p class="">Duration of Course- <%= @course.courseDuration%></p>
-        <p class="">Course Description- <%= @course.courseDescription%></p>
-        <p class="">Course Price- <%= @course.coursePrice%></p>
-      </div>
-      <%if @student_id%>
-        <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: @course.id), class: "btn btn-primary" %>
-      <%end%>
+    <div class="course-title">
+      <h1>The Complete 2023 Web Development Bootcamp</h1>
+      <p>Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps</p>
+    </div>
+    <div class="course-overview ">
+      <span class="bestseller">Bestseller</span>
+      <span class="course-rating">4.7 &#9733; &#9733; &#9733; &#9733;</span>
+      <span class="voilet">(330,238 ratings)</span>
+      <span class="w">1,099,376 students</span>
+    </div>
+    <div class="course-overview p-2">
+      <span class="w">Created by <a  class="voilet" href="#">Dr. Angele Yu</a></span>
+    </div>
+    <div class="course-overview" id="overview-gap">
+      <span class="w"><i class="fa-regular fa-star"></i> &nbsp; Last updated 10/2023</span>
+      <span class="w"><i class="fa-solid fa-globe"></i> &nbsp; English</span>
+      <span class="w"><i class="fa-solid fa-keyboard"></i> &nbsp; 1,099,376 English [Auto], Arabic [Auto], <a  class="voilet" href="#">more</a></span>
     </div>
   </div>
 </div>
+<div class="container">
+  <div class="what-you-learn m-4 p-2">
+    <h2>What you'll learn</h2>
+    <div class="summary-texts">
+      <div>
+        <div class="summary-text">
+          <span>&check;</span>
+          <p>Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>After the course you will be able to build ANY website you want.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>Work as a freelance web developer.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>Master backend development with Node.</p>
+        </div>
+      </div>
+      <div>
+        <div class="summary-text"> <span>&check;</span>
+          <p>Build 16 web development projects for your portfolio, ready to apply for junior developer jobs.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>After the course you will be able to build ANY website you want.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>Work as a freelance web developer.</p>
+        </div>
+        <div class="summary-text"><span>&check;</span>
+          <p>Master backend development with Node.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="course-include m-4 p-2">
+    <h2>This course includes:</h2>
+    <div class="course-include-texts">
+      <div>
+        <div class="summary-text">
+          <%= image_tag("youtube.svg")%>
+          <p>62.5 hours on-demand video</p>
+        </div>
+        <div class="summary-text">
+         <%= image_tag("lrarrow.svg")%>
+          <p>7 coding exercises</p>
+        </div>
+        <div class="summary-text">
+         <%= image_tag("file.svg")%>
+          <p>70 articles</p>
+        </div>
+      </div>
+      <div>
+        <div class="summary-text">
+          <%= image_tag("folder.svg")%>
+          <p>110 downloadable resources</p>
+        </div>
+        <div class="summary-text">
+        <%= image_tag("mobile.svg")%>
+          <p>Access on mobile and TV</p>
+        </div>
+        <div class="summary-text">
+         <%= image_tag("worldcup.svg")%>
+          <p>Certificate of completion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="what-you-learn m-4 p-2">
+    <div>
+      <h4>Top companies offer this course to their employees</h4>
+      <p>This course was selected for our collection of top-rated courses trusted by businesses worldwide. Learn more</p>
+    </div>
+    <div class="summary-logo">
+      <div>
+        <%= image_tag("https://s.udemycdn.com/partner-logos/v4/nasdaq-dark.svg")%>
+      </div>
+      <div>
+        <%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/volkswagen.svg")%>
+      </div>
+      <div>
+        <%= image_tag("https://s.udemycdn.com/partner-logos/v4/box-dark.svg")%>
+      </div>
+      <div>
+        <%= image_tag("https://s.udemycdn.com/partner-logos/v4/netapp-dark.svg")%>
+      </div>
+      <div>
+        <%= image_tag("https://s.udemycdn.com/partner-logos/v4/eventbrite-dark.svg")%>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container ">
+  <div class=" coding-exercises p-all-4">
+    <div class="coding-exercises-text">
+      <h1>Coding Exercises</h1>
+      <p>This course includes our updated coding exercises so you can practice your skills as you learn.</p>
+      <%= link_to "See a demo"%>
+    </div>
+    <div class="coding-exercises-img">
+      <div class=""><%= image_tag("c9.png")%></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h1>Course Content</h1>
+</div>
+<div class="container ">
+  <div class="content-count">
+    <p>47 sections • 398 lectures • 63h 5m total length</p>
+    <p>Expand all sections</p>
+  </div>
+  <div class="width-75">
+    <div class="content-bar">
+      <div class="content-topic">
+        <i class="fa-solid fa-chevron-down"></i>
+        <span><b>Front-End Development</b></span>
+      </div>
+      <div class="content-duration">
+        <div>9 lectures&middot;37 min</div>
+      </div>
+    </div>
+    <div class="content-bar">
+      <div class="content-topic">
+        <i class="fa-solid fa-chevron-down"></i>
+        <span><b>Introduction to html</b></span>
+      </div>
+      <div class="content-duration">
+        <div>9 lectures&middot;37 min</div>
+      </div>
+    </div>
+    <div class="content-bar">
+      <div class="content-topic">
+        <i class="fa-solid fa-chevron-down"></i>
+        <span><b>Intermediate HTML</b></span>
+      </div>
+      <div class="content-duration">
+        <div>9 lectures&middot;37 min</div>
+      </div>
+    </div>
+    <div class="content-bar">
+      <div class="content-topic">
+        <i class="fa-solid fa-chevron-down"></i>
+        <span><b>Multi-page website</b></span>
+      </div>
+      <div class="content-duration">
+        <div>9 lectures&middot;37 min</div>
+      </div>
+    </div>
+  </div>
+</div>
+<%# Card Container %>
