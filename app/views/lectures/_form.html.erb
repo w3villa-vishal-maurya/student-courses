@@ -1,0 +1,31 @@
+<%= form_with model: lecture, multipart: true, method: method  do |form| %>
+  <% if lecture.errors.any? %>
+    <div class="col-lg-12">
+      <p>Please fix errors below:</p>
+      <% lecture.errors.full_messages.each do |message|%>
+        <p class="text-danger"><%= message%>
+        </p>
+      <%end%>
+    </div>
+  <%end%>
+   <div class="mb-3">
+    <%= form.label "Lecture title"%>
+    <%= form.text_field :lecture_title, class: "form-control", placeholder: "Title name"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Lecture Description"%>
+    <%= form.text_field :lecture_description, class: "form-control", placeholder: "Description"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Lecture duration"%>
+    <%= form.number_field :lecture_duration, class: "form-control", placeholder: "Duration"%>
+  </div>
+  <div class="mb-3">
+    <%= form.label "Lecture Notes"%>
+    <%= form.text_field :lecture_notes, class: "form-control", placeholder: "Notes"%>
+  </div>
+  
+  <div class="mb-3">
+    <%= form.submit "ADD", class: "btn btn-primary"%>
+  </div>
+<%end%>

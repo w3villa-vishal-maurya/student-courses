@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get "/student/:id/edit", to: "students#edit", as: "student_edit"
   put "/student/:id/update", to: "students#update", as: "student_update"
   delete "/student/:id", to: "students#destroy", as: "student_delete"
-  
+
   # Routes for Course Model
   get "/course/new", to: "courses#new"
   get "/course/index", to: "courses#index"
@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   post "course_buy", to: "courses#course_buy"
   get "/student/:id/courses", to: "students#student_courses", as: "student_courses"
   delete "/student/:id/courses", to: "students#student_delete_course", as: "student_delete_course"
+
+  resources :lectures
+
+
+
+  resources :contents
 
   # Defines the root path route ("/")
   # root "articles#index"

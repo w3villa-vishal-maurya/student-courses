@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag('student_index') %>
+<div class="nav">
+  <h1>Lecture Dashboard</h1>
+</div>
+<div class="row">
+  <% @lecture.each do |lecture|%>
+    <div class="col-3 card">
+      <div class="text">
+        <div class="course-header">
+          <h3><%= link_to "#{lecture.lecture_title}"%></h3>
+        </div>
+        <div class="row">
+          <p class="article"><%= lecture.lecture_description %></p>
+          <p class="article"><%= lecture.lecture_notes %></p>
+          <p class="article">Module- <%= lecture.lecture_duration %></p>
+          <% if @student_id %>
+            <%= button_to "Buy Now", course_buy_path(student_id: @student_id,course_id: course.id), class: "btn btn-primary" %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  <%end%>
+</div>

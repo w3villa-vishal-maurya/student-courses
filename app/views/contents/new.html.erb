@@ -1,0 +1,28 @@
+<h1>Create new Content</h1>
+
+<%# <%= render 'form', content: @content %> 
+
+<%= form_with(model: @content,url: contents_path) do |form| %>
+  <% if @content.errors.any? %>
+    <div class="col-lg-12">
+      <p>Please fix errors below:</p>
+      <% @content.errors.full_messages.each do |message|%>
+        <p class="text-danger"><%= message%>
+        </p>
+      <%end%>
+    </div>
+  <%end%>
+   <div class="mb-3">
+    <%= form.label "Content title"%>
+    <%= form.text_field :content_title, class: "form-control", placeholder: "Title name"%>
+  </div>
+
+   <%= form.hidden_field :course_id, value: @course.id %>
+  <div class="mb-3">
+    <%= form.label "Content Description"%>
+    <%= form.text_field :content_description, class: "form-control", placeholder: "Description"%>
+  </div>
+  <div class="mb-3">
+    <%= form.submit "ADD", class: "btn btn-primary"%>
+  </div>
+<%end%>

@@ -10,6 +10,7 @@ class CoursesController < ApplicationController
   end
 
   def create
+    # debugger
     @course = Course.new(course_params)
 
     if @course.save
@@ -51,11 +52,7 @@ class CoursesController < ApplicationController
   end
 
   def course_buy
-    # if params[:student_id] == nil
-    #     flash[:notice]="Only Student can by the courses!!!"
-    #     redirect_to student_index_path
-    # end
-    # debugger
+ 
 
     if current_student.present?
       @student = Student.find(current_student.id)
