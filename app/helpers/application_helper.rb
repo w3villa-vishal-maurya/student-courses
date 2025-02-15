@@ -11,5 +11,9 @@ module ApplicationHelper
         return arr.to_set;
     end
 
+    def courses_payment(course)
+        return true unless course.payments.where(student_id: current_student.id).present?
+    end
+
 end
  

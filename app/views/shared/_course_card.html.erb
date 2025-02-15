@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="card-img">
-    <%= image_tag("c9.png")%>
+    <%= image_tag(url_for(@course.course_image))%>
   </div>
   <div class="card-user p-all-2">
     <div><b>Personal</b></div>
@@ -8,12 +8,18 @@
   </div>
   <div class="course-price-details">
     <div class="course-amount">
-      <div id="price-tag"><b>&#x20B9; 449</b></div>
+      <div id="price-tag"><b>&#x20B9; <%=@course.coursePrice%></b></div>
       <div><s>&#x20B9; 3,199</s></div>
       <div>86% off</div>
     </div>
     <div class="course-buy-tag">
-      <button class="buy-course-btn p-1" type="button">Buy this course</button>
+      <button class="buy-course-btn p-1" type="button">
+      <% if courses_payment(@course) %>
+        <%= link_to "Buy this course", new_course_payment_path(@course), class: "buy-section" %>
+      <%else %>
+        <%= link_to "Go to the course", new_course_payment_path(@course), class: "buy-section" %>  
+      <%end%>
+      </button>
       <button class="like-btn p-1" type="button"><i class="fa-regular fa-heart"></i></button>
     </div>
     <div class="refund-challenge p-1">

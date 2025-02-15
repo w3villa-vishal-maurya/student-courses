@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag 'payments' %>
+
+<div class="payments"> 
+  <%= form_tag course_payments_path(@course), method: :post do %>
+    <label class="amount">
+      <span>Amount: $<%= @course.coursePrice %></span>
+    </label>
+
+    <script
+      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="A month's subscription"
+      data-amount="<%= (2 * 100).to_i %>" 
+      data-currency="usd"
+      data-locale="auto">
+    </script>
+  <% end %>
+
+  <script src="https://js.stripe.com/v2/"></script>
+  <script>
+    Stripe.setPublishableKey("<%= ENV['PUBLIC_KEY'] %>");
+  </script>
+</div>

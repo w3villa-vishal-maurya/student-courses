@@ -9,11 +9,11 @@ class Student < ApplicationRecord
     has_many :teachers 
     has_many :courses , through: :teachers
 
-    validates :studFName, :studLName, :yearOfEnroll , presence: true
-    validates :studFName, :studLName, length: {minimum: 2, maximum: 10}
-    validates :studPhone, presence: true, numericality: true
+    # validates :studFName, :studLName, :yearOfEnroll , presence: true
+    # validates :studFName, :studLName, length: {minimum: 2, maximum: 10}
+    # validates :studPhone, presence: true, numericality: true
 
-    after_commit :display_student_created
+    # after_commit :display_student_created
 
     def display_student_created
       if self.studFName.present?

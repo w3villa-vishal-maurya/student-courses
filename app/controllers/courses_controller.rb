@@ -14,7 +14,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to course_index_path
+      redirect_to courses_path
     else
       render :new
     end
@@ -48,7 +48,7 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
 
-    redirect_to course_index_path
+    redirect_to courses_path
   end
 
   def course_buy
@@ -66,7 +66,7 @@ class CoursesController < ApplicationController
         redirect_to root_path
       else
         flash[:alert] = "Error"
-        redirect_to course_index_path
+        redirect_to courses_path
       end
     else
       flash[:alert] = "Login First"

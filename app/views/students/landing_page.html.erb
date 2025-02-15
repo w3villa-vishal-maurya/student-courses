@@ -1,5 +1,7 @@
 <div class="container">
   <%# <img alt="udemy" src="/assets/images/udemy.jpg" /> %>
+  <div id="hello-world"></div>
+  
   <%= image_tag("udemy.jpg")%>
 </div>
 <div class="brands">
@@ -10,7 +12,7 @@
       <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/samsung.svg")%></div>
       <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/cisco.svg")%></div>
       <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/att.svg")%></div>
-      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/procter_gamble.svg")%></div>
+      <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/procter_gambluue.svg")%></div>
       <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/hewlett_packard_enterprise.svg")%></div>
       <div class="img-tag"><%= image_tag("https://s.udemycdn.com/partner-logos/ou-v1/att.svg")%></div>
     </div>
@@ -56,7 +58,7 @@
                   <% if  @student_id %>
                     <h3 class="h1-line"><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
                   <%else %>
-                    <a class="row title" href="/course/<%= course.id %>">
+                    <a class="row title" href="/courses/<%= course.id %>">
                       <h5 class="h1-line"><%= course.courseTitle %></h5>
                     </a>
                   <%end%>
@@ -140,7 +142,7 @@
             <% if  @student_id %>
               <h3><%= link_to "#{course.courseTitle}", course_show_path(student_id: @student_id, course_id: course.id)%></h3>
             <%else %>
-              <a class="row title" href="/course/<%= course.id %>">
+              <a class="row title" href="/courses/<%= course.id %>">
                 <h3><%= course.courseTitle %></h3>
               </a>
             <%end%>
@@ -206,7 +208,7 @@
     <div class="col-3 ">
       <div class="category-img"><%= image_tag("https://s.udemycdn.com/home/top-categories/lohp-category-music-2x-v2.jpg")%></div>
       <div class="text">
-        <h5>Music</h5>
+        <h5>Add new category</h5>
       </div>
     </div>
   </div>
@@ -283,5 +285,5 @@
     </div>
   </div>
 </div>
-
 <%= javascript_include_tag("landing_page.js")%>
+

@@ -6,9 +6,9 @@
       <span>Development 	&gt; Web Development 	&gt; Web Development </span> <span></span>
     </div>
     <div class="course-title">
-      <h1>The Complete 2023 Web Development Bootcamp</h1>
+      <h1><%=@course.courseTitle%></h1>
       <p>Become a Full-Stack Web Developer with just ONE course. HTML, CSS, Javascript, Node, React, MongoDB, Web3 and DApps</p>
-    </div>
+    </div>  
     <div class="course-overview ">
       <span class="bestseller">Bestseller</span>
       <span class="course-rating">4.7 &#9733; &#9733; &#9733; &#9733;</span>
@@ -129,7 +129,7 @@
       <%= link_to "See a demo"%>
     </div>
     <div class="coding-exercises-img">
-      <div class=""><%= image_tag("c9.png")%></div>
+      <div class=""><%= image_tag(url_for(@course.course_image))%></div>
     </div>
   </div>
 </div>
@@ -142,42 +142,28 @@
     <p>Expand all sections</p>
   </div>
   <div class="width-75">
-    <div class="content-bar">
-      <div class="content-topic">
-        <i class="fa-solid fa-chevron-down"></i>
-        <span><b>Front-End Development</b></span>
+    <% @course.contents.each do |content| %>
+      <div class="content-bar" data-content-id="<%= content.id %>">
+        <div class="content-bar-header">
+          <div class="content-topic">
+            <i class="fa-solid fa-chevron-down"></i>
+            <span><b><%= content.content_title %></b></span>
+          </div>
+          <div class="content-duration">
+            <div>9 lectures &middot; 37 min</div>
+          </div>
+        </div> 
+        <div class="content-details hidden" id="content-details-<%= content.id %>">
+          <ul>
+            <% content.lectures.each do |lecture| %>
+              <li class="list-style"><%= lecture.lecture_title %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-      <div class="content-duration">
-        <div>9 lectures&middot;37 min</div>
-      </div>
-    </div>
-    <div class="content-bar">
-      <div class="content-topic">
-        <i class="fa-solid fa-chevron-down"></i>
-        <span><b>Introduction to html</b></span>
-      </div>
-      <div class="content-duration">
-        <div>9 lectures&middot;37 min</div>
-      </div>
-    </div>
-    <div class="content-bar">
-      <div class="content-topic">
-        <i class="fa-solid fa-chevron-down"></i>
-        <span><b>Intermediate HTML</b></span>
-      </div>
-      <div class="content-duration">
-        <div>9 lectures&middot;37 min</div>
-      </div>
-    </div>
-    <div class="content-bar">
-      <div class="content-topic">
-        <i class="fa-solid fa-chevron-down"></i>
-        <span><b>Multi-page website</b></span>
-      </div>
-      <div class="content-duration">
-        <div>9 lectures&middot;37 min</div>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
 <%# Card Container %>
+
+<%= javascript_include_tag("course_page.js")%>
