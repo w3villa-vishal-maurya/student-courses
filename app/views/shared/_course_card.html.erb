@@ -17,7 +17,7 @@
       <% if courses_payment(@course) %>
         <%= link_to "Buy this course", new_course_payment_path(@course), class: "buy-section" %>
       <%else %>
-        <%= link_to "Go to the course", new_course_payment_path(@course), class: "buy-section" %>  
+        <%= link_to "Go to the course", "#{root_url}#{@course.id}/lecture", class: "buy-section" %>  
       <%end%>
       </button>
       <button class="like-btn p-1" type="button"><i class="fa-regular fa-heart"></i></button>

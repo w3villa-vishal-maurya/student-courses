@@ -21,6 +21,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    
     @student_id = params[:student_id]
 
     if params[:student_id] == params[:id]
@@ -52,8 +53,6 @@ class CoursesController < ApplicationController
   end
 
   def course_buy
- 
-
     if current_student.present?
       @student = Student.find(current_student.id)
       @course = Course.find(params[:course_id])
@@ -74,6 +73,12 @@ class CoursesController < ApplicationController
     end
 
     #@student = Student.find(params[:student_id])
+  end
+
+  def course_content
+    
+    binding.pry
+    
   end
 
   private

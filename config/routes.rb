@@ -38,7 +38,10 @@ Rails.application.routes.draw do
   resources :contents
 
   resources :categories
+  
+  # root "home#index"
 
   # Defines the root path route ("/")
   # root "articles#index"
+  get "/*path", to: "homes#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end
